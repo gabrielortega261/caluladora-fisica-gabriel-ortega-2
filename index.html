@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora de Magnitudes Físicas</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ═══════════════════════ HEADER ═══════════════════════ -->
+  <header class="site-header">
+    <div class="header-bg"></div>
+    <div class="header-content">
+      <div class="header-label">Ingeniería de Software · Construcción de Algoritmos</div>
+      <h1 class="site-title">Calculadora de<br/><span class="accent">Magnitudes Físicas</span></h1>
+      <p class="student-name">Estudiante: <strong id="nombreEstudiante">Tu Nombre Completo</strong></p>
+    </div>
+    <div class="header-grid"></div>
+  </header>
+
+  <!-- ═══════════════════════ MAIN ═══════════════════════ -->
+  <main class="main-grid">
+
+    <!-- 1. VELOCIDAD -->
+    <section class="calc-card" id="card-velocidad">
+      <div class="card-index">01</div>
+      <div class="card-icon">⚡</div>
+      <h2 class="card-title">Velocidad</h2>
+      <p class="card-formula">v = d / t</p>
+      <div class="card-inputs">
+        <label>Distancia (m)
+          <input type="number" id="v-dist" placeholder="ej. 100" step="any"/>
+        </label>
+        <label>Tiempo (s)
+          <input type="number" id="v-time" placeholder="ej. 10" step="any"/>
+        </label>
+      </div>
+      <button class="btn-calc" onclick="calcVelocidad()">Calcular</button>
+      <div class="result-box" id="res-velocidad"></div>
+    </section>
+
+    <!-- 2. ACELERACION -->
+    <section class="calc-card" id="card-aceleracion">
+      <div class="card-index">02</div>
+      <div class="card-icon">🚀</div>
+      <h2 class="card-title">Aceleración</h2>
+      <p class="card-formula">a = Δv / Δt</p>
+      <div class="card-inputs">
+        <label>Δv — Cambio de velocidad (m/s)
+          <input type="number" id="a-dv" placeholder="ej. 20" step="any"/>
+        </label>
+        <label>Δt — Cambio de tiempo (s)
+          <input type="number" id="a-dt" placeholder="ej. 5" step="any"/>
+        </label>
+      </div>
+      <button class="btn-calc" onclick="calcAceleracion()">Calcular</button>
+      <div class="result-box" id="res-aceleracion"></div>
+    </section>
+
+    <!-- 3. FUERZA -->
+    <section class="calc-card" id="card-fuerza">
+      <div class="card-index">03</div>
+      <div class="card-icon">💪</div>
+      <h2 class="card-title">Fuerza</h2>
+      <p class="card-formula">F = m · a</p>
+      <div class="card-inputs">
+        <label>Masa (kg)
+          <input type="number" id="f-masa" placeholder="ej. 70" step="any"/>
+        </label>
+        <label>Aceleración (m/s²)
+          <input type="number" id="f-acel" placeholder="ej. 9.8" step="any"/>
+        </label>
+      </div>
+      <button class="btn-calc" onclick="calcFuerza()">Calcular</button>
+      <div class="result-box" id="res-fuerza"></div>
+    </section>
+
+    <!-- 4. TRABAJO -->
+    <section class="calc-card" id="card-trabajo">
+      <div class="card-index">04</div>
+      <div class="card-icon">🔧</div>
+      <h2 class="card-title">Trabajo</h2>
+      <p class="card-formula">W = F · d · cos(θ)</p>
+      <div class="card-inputs">
+        <label>Fuerza (N)
+          <input type="number" id="w-fuerza" placeholder="ej. 50" step="any"/>
+        </label>
+        <label>Distancia (m)
+          <input type="number" id="w-dist" placeholder="ej. 10" step="any"/>
+        </label>
+        <label>Ángulo θ (grados)
+          <input type="number" id="w-angulo" placeholder="ej. 0" step="any"/>
+        </label>
+      </div>
+      <button class="btn-calc" onclick="calcTrabajo()">Calcular</button>
+      <div class="result-box" id="res-trabajo"></div>
+    </section>
+
+    <!-- 5. ENERGIA CINETICA -->
+    <section class="calc-card" id="card-ec">
+      <div class="card-index">05</div>
+      <div class="card-icon">⚙️</div>
+      <h2 class="card-title">Energía Cinética</h2>
+      <p class="card-formula">K = ½ · m · v²</p>
+      <div class="card-inputs">
+        <label>Masa (kg)
+          <input type="number" id="ec-masa" placeholder="ej. 10" step="any"/>
+        </label>
+        <label>Velocidad (m/s)
+          <input type="number" id="ec-vel" placeholder="ej. 5" step="any"/>
+        </label>
+      </div>
+      <button class="btn-calc" onclick="calcEnergiaCinetica()">Calcular</button>
+      <div class="result-box" id="res-ec"></div>
+    </section>
+
+    <!-- 6. ENERGIA POTENCIAL -->
+    <section class="calc-card" id="card-ep">
+      <div class="card-index">06</div>
+      <div class="card-icon">🌍</div>
+      <h2 class="card-title">Energía Potencial</h2>
+      <p class="card-formula">U = m · g · h</p>
+      <div class="card-inputs">
+        <label>Masa (kg)
+          <input type="number" id="ep-masa" placeholder="ej. 5" step="any"/>
+        </label>
+        <label>Altura (m)
+          <input type="number" id="ep-altura" placeholder="ej. 10" step="any"/>
+        </label>
+        <label>g (m/s²) — predeterminado: 9.8
+          <input type="number" id="ep-g" placeholder="9.8" step="any" value="9.8"/>
+        </label>
+      </div>
+      <button class="btn-calc" onclick="calcEnergiaPotencial()">Calcular</button>
+      <div class="result-box" id="res-ep"></div>
+    </section>
+
+    <!-- 7. DENSIDAD -->
+    <section class="calc-card" id="card-densidad">
+      <div class="card-index">07</div>
+      <div class="card-icon">🧪</div>
+      <h2 class="card-title">Densidad</h2>
+      <p class="card-formula">ρ = m / V</p>
+      <div class="card-inputs">
+        <label>Masa (kg)
+          <input type="number" id="d-masa" placeholder="ej. 8" step="any"/>
+        </label>
+        <label>Volumen (m³)
+          <input type="number" id="d-vol" placeholder="ej. 2" step="any"/>
+        </label>
+      </div>
+      <button class="btn-calc" onclick="calcDensidad()">Calcular</button>
+      <div class="result-box" id="res-densidad"></div>
+    </section>
+
+    <!-- 8. PRESION -->
+    <section class="calc-card" id="card-presion">
+      <div class="card-index">08</div>
+      <div class="card-icon">🌡️</div>
+      <h2 class="card-title">Presión</h2>
+      <p class="card-formula">P = F / A</p>
+      <div class="card-inputs">
+        <label>Fuerza (N)
+          <input type="number" id="p-fuerza" placeholder="ej. 100" step="any"/>
+        </label>
+        <label>Área (m²)
+          <input type="number" id="p-area" placeholder="ej. 4" step="any"/>
+        </label>
+      </div>
+      <button class="btn-calc" onclick="calcPresion()">Calcular</button>
+      <div class="result-box" id="res-presion"></div>
+    </section>
+
+    <!-- 9. CARGA ELECTRICA -->
+    <section class="calc-card" id="card-carga">
+      <div class="card-index">09</div>
+      <div class="card-icon">⚡</div>
+      <h2 class="card-title">Carga Eléctrica</h2>
+      <p class="card-formula">q = I · t</p>
+      <div class="card-inputs">
+        <label>Corriente I (A)
+          <input type="number" id="q-corriente" placeholder="ej. 2" step="any"/>
+        </label>
+        <label>Tiempo (s)
+          <input type="number" id="q-tiempo" placeholder="ej. 30" step="any"/>
+        </label>
+      </div>
+      <button class="btn-calc" onclick="calcCarga()">Calcular</button>
+      <div class="result-box" id="res-carga"></div>
+    </section>
+
+    <!-- 10. LEY DE OHM -->
+    <section class="calc-card" id="card-ohm">
+      <div class="card-index">10</div>
+      <div class="card-icon">🔌</div>
+      <h2 class="card-title">Ley de Ohm</h2>
+      <p class="card-formula">V = I · R</p>
+      <div class="card-inputs">
+        <label>Corriente I (A)
+          <input type="number" id="ohm-i" placeholder="ej. 3" step="any"/>
+        </label>
+        <label>Resistencia R (Ω)
+          <input type="number" id="ohm-r" placeholder="ej. 10" step="any"/>
+        </label>
+      </div>
+      <button class="btn-calc" onclick="calcOhm()">Calcular</button>
+      <div class="result-box" id="res-ohm"></div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer class="site-footer">
+    <p>Ingeniería de Software · Construcción de Algoritmos · 2025</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

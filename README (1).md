@@ -8,7 +8,7 @@
 
 ## 👤 Estudiante
 
-**Tu Nombre Completo**  
+**gabriel ortega**  
 Programa: Ingeniería de Software
 
 ---
